@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import cors from "cors";
 
 import { users } from "./db.js";
 import checkAuth from "./utils/checkAuth.js";
@@ -8,6 +9,8 @@ import checkAuth from "./utils/checkAuth.js";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+
 
 app.post('/auth/login', async (req, res) => {
 	const foundUser = users.find(u => req.body.email === u.email);
